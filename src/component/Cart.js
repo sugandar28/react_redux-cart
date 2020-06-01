@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import formateCurrency from "../util";
 import CheckoutForm from "./CheckoutForm";
+import Fade from "react-reveal/Fade";
 
 export default class Cart extends Component {
   constructor(props) {
@@ -43,22 +44,24 @@ export default class Cart extends Component {
         )}
         <div>
           <div className="cart">
-            <ul className="cart-items">
-              {cartItems.map((item) => (
-                <li key={item._id}>
-                  <div>
-                    <img src={item.image} alt={item.title} />
-                  </div>
-                  <div>{item.title}</div>
-                  <div className="right">
-                    {formateCurrency(item.price)} x {item.count}
-                    <button onClick={() => this.props.removeFromCart(item)}>
-                      Remove
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <Fade left cascade>
+              <ul className="cart-items">
+                {cartItems.map((item) => (
+                  <li key={item._id}>
+                    <div>
+                      <img src={item.image} alt={item.title} />
+                    </div>
+                    <div>{item.title}</div>
+                    <div className="right">
+                      {formateCurrency(item.price)} x {item.count}
+                      <button onClick={() => this.props.removeFromCart(item)}>
+                        Remove
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Fade>
           </div>
 
           {cartItems.length !== 0 && (
@@ -78,12 +81,14 @@ export default class Cart extends Component {
                 </button>
               </div>
               {this.state.showCheckout && (
-                <div>
-                  <CheckoutForm
-                    handleInput={this.handleInput}
-                    createOrder={this.createOrder}
-                  />
-                </div>
+                <Fade right cascade>
+                  <div>
+                    <CheckoutForm
+                      handleInput={this.handleInput}
+                      createOrder={this.createOrder}
+                    />
+                  </div>
+                </Fade>
               )}
             </div>
           )}
