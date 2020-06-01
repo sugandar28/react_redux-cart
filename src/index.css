@@ -212,3 +212,30 @@ input {
   border: 0.1rem #c0c0c0 solid;
   width: 100%;
 }
+
+/*modal component (product details)*/
+
+.product-details {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  max-height: 96vh;
+}
+
+.product-details img {
+  max-height: 100vh;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.product-details-description {
+  flex: 1 1;
+  margin: 1rem;
+}
+
+.close-modal {
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+  z-index: 10;
+}
