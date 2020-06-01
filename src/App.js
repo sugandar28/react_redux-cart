@@ -18,6 +18,11 @@ class App extends React.Component {
         : [],
     };
   }
+
+  //create order
+  submitOrder = (order) => {
+    alert("need to save order for" + order.name);
+  };
   //---------------------removeFromCart
   removeFromCart = (product) => {
     const cartItems = this.state.cartItems.slice();
@@ -110,6 +115,7 @@ class App extends React.Component {
               <Cart
                 cartItems={this.state.cartItems}
                 removeFromCart={this.removeFromCart}
+                submitOrder={this.submitOrder}
               />
             </div>
           </div>

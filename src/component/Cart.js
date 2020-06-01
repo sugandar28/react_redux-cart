@@ -1,7 +1,35 @@
 import React, { Component } from "react";
 import formateCurrency from "../util";
+import CheckoutForm from "./CheckoutForm";
 
 export default class Cart extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      email: "",
+      address: "",
+      showCheckout: false,
+    };
+  }
+  // create order
+  createOrder = (e) => {
+    e.preventDefault();
+    const order = {
+      name: this.state.name,
+      email: this.state.email,
+      address: this.state.address,
+      cartItems: this.props.cartItems,
+    };
+    this.props.submitOrder(order);
+  };
+
+  //handle checkout form input
+  handleInput = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
     const { cartItems } = this.props;
     return (
@@ -42,8 +70,21 @@ export default class Cart extends Component {
                     cartItems.reduce((a, c) => a + c.price * c.count, 0)
                   )}
                 </div>
-                <button className="primary button">Proceed</button>
+                <button
+                  className="primary button"
+                  onClick={() => this.setState({ showCheckout: true })}
+                >
+                  Proceed
+                </button>
               </div>
+              {this.state.showCheckout && (
+                <div>
+                  <CheckoutForm
+                    handleInput={this.handleInput}
+                    createOrder={this.createOrder}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>
