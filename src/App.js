@@ -13,7 +13,9 @@ class App extends React.Component {
       products: data.products,
       sort: "",
       size: "",
-      cartItems: JSON.parse(localStorage.getItem("cartItems")),
+      cartItems: localStorage.getItem("cartItems")
+        ? JSON.parse(localStorage.getItem("cartItems"))
+        : [],
     };
   }
   //---------------------removeFromCart
@@ -22,7 +24,10 @@ class App extends React.Component {
     this.setState({
       cartItems: cartItems.filter((x) => x._id !== product._id),
     });
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(cartItems.filter((x) => x._id !== product._id))
+    );
   };
 
   //------------------------------ add to cart
