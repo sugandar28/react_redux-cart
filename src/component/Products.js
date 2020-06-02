@@ -76,6 +76,6 @@ class Products extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { products: state.products.items };
+  return { products: state.products.filteredItems };
 };
 export default connect(mapStateToProps, { fetchProducts })(Products);
