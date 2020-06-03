@@ -1,4 +1,4 @@
-import { CREATE_ORDER, CLEAR_ORDER } from "../types";
+import { CREATE_ORDER, CLEAR_ORDER, FETCH_ORDER } from "../types";
 
 const orderReducer = (state = {}, action) => {
   switch (action.type) {
@@ -8,6 +8,8 @@ const orderReducer = (state = {}, action) => {
       return { order: null };
     default:
       return state;
+    case FETCH_ORDER:
+      return { orders: action.payload };
   }
 };
 
