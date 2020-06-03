@@ -6,6 +6,7 @@ import ModalComponent from "./ModalComponent";
 
 import { connect } from "react-redux";
 import { fetchProducts } from "../actions/productActions";
+import { addToCart } from "../actions/cartActions";
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -78,4 +79,4 @@ class Products extends Component {
 const mapStateToProps = (state) => {
   return { products: state.products.filteredItems };
 };
-export default connect(mapStateToProps, { fetchProducts })(Products);
+export default connect(mapStateToProps, { fetchProducts, addToCart })(Products);
